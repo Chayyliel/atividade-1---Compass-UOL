@@ -5,10 +5,13 @@
 * [Objetivos AWS](#objetivos-aws)
 * [Objetivos Linux](#objetivos-linux)
 * [Documentação](#-documenta%C3%A7%C3%A3o-)
-* [Parte I](#parte-i---console-aws)
+* [Parte I - Console AWS](#parte-i---console-aws)
 * [Criação de key pairs](#criação-de-key-pairs)
 * [Lançamento de instâncias](#lançamento-de-instâncias)
 * [Gerando Elastic IP](#gerando-elastic-ip)
+* [Criando o EFS](#criando-o-efs)
+* [Parte II - Sistema Linux](#parte-ii---sistema-linux)
+* [Configurando NFS](#configurando-nfs)
   
 # Objetivos AWS
 - Gerar uma chave pública para acesso ao ambiente;
@@ -60,3 +63,15 @@
 - Dentro da pagina devera selecionar deixe no padrão ou de mude o Network Border Group de acordo com a região de trabalho da instância e finalize em "Allocate".
 - Com Elastic Ip criado, selecione ele e vá em actions no canto superior direito e selecione a opção "Associate Elast IP address".
 - Nessa página deverá selecionar a instância a qual será associado, seu ip privado se necessario e clicar em "Associate".
+
+## Criando o EFS
+- Para ter acesso ao NFS precisamos do EFS da AWS, no console AWS pesquise por EFS.
+- Vá ate "Create file system" para começar a criar um sistema de arquivos EFS.
+- Escolha o nome que deseja para a EFS e a VPC da sua instância.
+- Selecione a EFS criada e vá em "View details" > Network > Manage e no menu "Mount Targets" selecione o security group da sua instância que deverá estar com a porta 	NFS liberada e salve.
+- Selecione a EFS Clique em "Attach" e copie o código do NFS client.
+
+#
+# Parte II - Sistema Linux
+
+## Configurando NFS
