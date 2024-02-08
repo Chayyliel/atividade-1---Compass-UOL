@@ -13,6 +13,9 @@
 * [Parte II - Sistema Linux](#parte-ii---sistema-linux)
 * [Configurando NFS](#configurando-nfs)
 * [Criando um diretório com seu nome dentro do filesystem do NFS](#criando-um-diretório-com-seu-nome-dentro-do-filesystem-do-nfs)
+* [Configurando o Apache](#configurando-o-apache)
+* [Criação do script para valdiar status do apache](#criação-do-script-para-valdiar-status-do-apache)
+* [Preparando a execução automatizada do script](#preparando-a-execução-automatizada-do-script)
   
 # Objetivos AWS
 - Gerar uma chave pública para acesso ao ambiente;
@@ -107,3 +110,64 @@
 - Para listar e ver se foi criado o diretorio com seu nome use o comando:
 
   `ls`
+
+## Configurando o Apache
+- No terminal deve-se instalar o servidor apache na instância com o comando:
+
+  `sudo yum install httpd -y`
+
+- Para dar inicializar e verificar o status do apache use os comandos:
+
+  `systemctl start httpd` `systemctl status httpd`
+
+- Para o apache inicializar automaticamente use o comando:
+
+  `systemctl enable httpd`
+
+- Para testar o servidor copie o endereço IP público da instãncia e cola na barra de endereço do navegador.
+
+## Criação do script para valdiar status do apache
+- Crie um arquivo de script com o comando:
+
+  `touch <nome_do_arquivo>.sh`
+
+- Abra o arquivo com um editor de texto e adicione as seguintes linhas.
+  ```bash
+  #!/bin/bash
+
+	SERVICE="httpd"
+	DATE=$(DATE '+%y-%M-%D %h:%M:%s')
+
+	if systemctl is-active --quiet "$SERVICE"; then
+		STATUS="Online"
+		MESSAGE="Serviço está online"
+	else
+		STATUS="Offline"
+		MESSAGE="Serviço está offline"
+	fi
+
+	nfs_share="/srv/nfs_share"
+
+	echo "%DATE - $SERVICE - Status: $STATUS = $MESSAGE" >> "$nfs_share/$STATUS.txt"
+  ```
+- Salve o arquivo e saia.
+- ara tornar o arquivo do script executavewl use o comando:
+
+  `chmod +x <nome_do_arquivo>`
+
+- Execute o script usando o comando:
+
+  `./<nome_do_arquivo>`
+
+## Preparando a execução automatizada do script
+- No terminal execute o comando:
+
+  `crontab -e`
+
+- Adicione dentro do arquivo a linha de código:
+```bash
+*/5 * * * * /<caminho_do_script>/<nome_do_arquivo>.sh
+```
+- Salve o arquivo.
+
+<h1 align="center"> FIM  </h1> 
