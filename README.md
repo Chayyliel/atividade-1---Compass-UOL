@@ -12,6 +12,7 @@
 * [Criando o EFS](#criando-o-efs)
 * [Parte II - Sistema Linux](#parte-ii---sistema-linux)
 * [Configurando NFS](#configurando-nfs)
+* [Criando um diretório com seu nome dentro do filesystem do NFS](#criando-um-diretório-com-seu-nome-dentro-do-filesystem-do-nfs)
   
 # Objetivos AWS
 - Gerar uma chave pública para acesso ao ambiente;
@@ -75,3 +76,34 @@
 # Parte II - Sistema Linux
 
 ## Configurando NFS
+- No terminal do linux acesse a instância criada na AWS via SSH para montar o NFS.
+- Instale o pacote NFS com o comando:
+
+  `sudo yum install -y amazon-efs-utils`
+  
+- Crie um diretório para a montagem do NFS, chamarei de nfs_share, pra isso uso o comando:
+
+  `mkdir nfs_share`
+
+- Com o comando do NFS client passado anteriormente no console AWS, vamos montar o nfs na pasta criada.
+
+  `sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport <id_do_efs>.efs.<região_de_montagem_do_efs>.amazonaws.com:/ /<diretorio_de_montagem_do_nfs>`
+
+- Para deixar a montagem do NFS automatica acesse com um editor de texto o arquivo "/etc/fstab".
+- Dentro do arquivo adicione a linha "<id_do_efs>.efs.<região_de_montagem_do_efs>.amazonaws.com:/ <diretorio_de_montagem_do_nfs> nfs4 nfsvers=4.1,rsize=1048576wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0"
+- Para verificar se o EFS está montado corretamente use o comando:
+
+  `df -h`
+
+## Criando um diretório com seu nome dentro do filesystem do NFS
+- No terminal entre no diretorio criado para o NFS com o comando:
+
+  `cd /<caminho_do_diretorio>`
+
+- Para criar o diretório com seu nome use o comando:
+
+  `mkdir <nome>`
+
+- Para listar e ver se foi criado o diretorio com seu nome use o comando:
+
+  `ls`
