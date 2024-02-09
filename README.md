@@ -171,3 +171,4 @@
 - Salve o arquivo.
 
 <h1 align="center"> FIM  </h1> 
+![](https://github.com/Chayyliel/Atv-1---AWS-LINUX/assets/142858638/572e0fc7-b352-4edc-bf17-a05530cdd9bf)
