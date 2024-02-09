@@ -91,7 +91,7 @@
 
 - Com o comando do NFS client passado anteriormente no console AWS, vamos montar o nfs na pasta criada.
 
-  `sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport <id_do_efs>.efs.<região_de_montagem_do_efs>.amazonaws.com:/ /<diretorio_de_montagem_do_nfs>`
+  `sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport <id_do_efs>.efs.<região_de_montagem_do_efs>.amazonaws.com:/ <diretorio_de_montagem_do_nfs>`
 
 - Para deixar a montagem do NFS automatica acesse com um editor de texto o arquivo "/etc/fstab".
 - Dentro do arquivo adicione a linha "<id_do_efs>.efs.<região_de_montagem_do_efs>.amazonaws.com:/ <diretorio_de_montagem_do_nfs> nfs4 nfsvers=4.1,rsize=1048576wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0"
