@@ -133,6 +133,7 @@
   `sudo touch <nome_do_arquivo>.sh`
 
 - Abra o arquivo com um editor de texto e adicione as seguintes linhas.
+
   ```bash
 	#!/bin/bash
 
@@ -150,6 +151,7 @@
 
 	echo "$DATE - $TIME - $SERVICE - Status: $STATUS = $MESSAGE" >> <caminho_do_diretorio>/$STATUS.txt
   ```
+
 - Salve o arquivo e saia.
 - Para tornar o arquivo do script executavewl use o comando:
 
@@ -165,9 +167,11 @@
   `sudo crontab -e`
 
 - Adicione dentro do arquivo a linha de código:
+
 ```bash
 */5 * * * * /<caminho_do_script>/<nome_do_arquivo>.sh
 ```
+
 - Salve o arquivo.
 
 <h1 align="center"> FIM  </h1> 
