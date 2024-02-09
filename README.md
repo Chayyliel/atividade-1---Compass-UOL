@@ -87,7 +87,7 @@
   
 - Crie um diretório para a montagem do NFS, chamarei de nfs_share, pra isso uso o comando:
 
-  `mkdir nfs_share`
+  `sudo mkdir nfs_share`
 
 - Com o comando do NFS client passado anteriormente no console AWS, vamos montar o nfs na pasta criada.
 
@@ -106,7 +106,7 @@
 
 - Para criar o diretório com seu nome use o comando:
 
-  `mkdir <nome>`
+  `sudo mkdir <nome>`
 
 - Para listar e ver se foi criado o diretorio com seu nome use o comando:
 
@@ -119,25 +119,26 @@
 
 - Para dar inicializar e verificar o status do apache use os comandos:
 
-  `systemctl start httpd` `systemctl status httpd`
+  `sudo systemctl start httpd` `sudo systemctl status httpd`
 
 - Para o apache inicializar automaticamente use o comando:
 
-  `systemctl enable httpd`
+  `sudo systemctl enable httpd`
 
 - Para testar o servidor copie o endereço IP público da instãncia e cola na barra de endereço do navegador.
 
 ## Criação do script para valdiar status do apache
 - Crie um arquivo de script com o comando:
 
-  `touch <nome_do_arquivo>.sh`
+  `sudo touch <nome_do_arquivo>.sh`
 
 - Abra o arquivo com um editor de texto e adicione as seguintes linhas.
   ```bash
-  #!/bin/bash
+	#!/bin/bash
 
-	SERVICE="httpd"
-	DATE=$(DATE '+%y-%M-%D %h:%M:%s')
+	SERVICE=$"httpd"
+	DATE=$(date +%d-%m-%Y)
+	TIME=$(date +%H:%M:%S)
 
 	if systemctl is-active --quiet "$SERVICE"; then
 		STATUS="Online"
@@ -147,23 +148,22 @@
 		MESSAGE="Serviço está offline"
 	fi
 
-	nfs_share="/srv/nfs_share"
 
-	echo "%DATE - $SERVICE - Status: $STATUS = $MESSAGE" >> "$nfs_share/$STATUS.txt"
+	echo "$DATE - $TIME - $SERVICE - Status: $STATUS = $MESSAGE" >> <caminho_do_diretorio>/$STATUS.txt
   ```
 - Salve o arquivo e saia.
 - ara tornar o arquivo do script executavewl use o comando:
 
-  `chmod +x <nome_do_arquivo>`
+  `sudo chmod +x <nome_do_arquivo>`
 
 - Execute o script usando o comando:
 
-  `./<nome_do_arquivo>`
+  `sudo ./<nome_do_arquivo>`
 
 ## Preparando a execução automatizada do script
 - No terminal execute o comando:
 
-  `crontab -e`
+  `sudo crontab -e`
 
 - Adicione dentro do arquivo a linha de código:
 ```bash
