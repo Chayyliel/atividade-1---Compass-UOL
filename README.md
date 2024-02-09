@@ -151,7 +151,7 @@
 	echo "$DATE - $TIME - $SERVICE - Status: $STATUS = $MESSAGE" >> <caminho_do_diretorio>/$STATUS.txt
   ```
 - Salve o arquivo e saia.
-- ara tornar o arquivo do script executavewl use o comando:
+- Para tornar o arquivo do script executavewl use o comando:
 
   `sudo chmod +x <nome_do_arquivo>`
 
