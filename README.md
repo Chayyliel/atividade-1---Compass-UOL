@@ -52,13 +52,14 @@
 - Nas configurações de rede deverá clica rem editar ativar o public IP e adicionar regras do grupo de segurança liberando as portas:
     Tipo | Protocolo | Intervalo de portas | Origem | Descrição
     ---|---|---|---|---
-    SSH | TCP | 22 | MEU IP | SSH
-    TCP personalizado | TCP | 80 | 0.0.0.0/0 | HTTP
-    TCP personalizado | TCP | 443 | 0.0.0.0/0 | HTTPS
+    TCP personalizado | TCP | 22 | 0.0.0.0/0 | SSH
     TCP personalizado | TCP | 111 | 0.0.0.0/0 | RPC
     UDP personalizado | UDP | 111 | 0.0.0.0/0 | RPC
     TCP personalizado | TCP | 2049 | 0.0.0.0/0 | NFS
     UDP personalizado | UDP | 2049 | 0.0.0.0/0 | NFS
+    TCP personalizado | TCP | 80 | 0.0.0.0/0 | HTTP
+    TCP personalizado | TCP | 443 | 0.0.0.0/0 | HTTPS
+
 - Lançar a instância em "Launch instances" e aguardar os processos de verificações.
 
 ## Gerando Elastic IP
