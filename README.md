@@ -148,7 +148,6 @@
 		MESSAGE="Serviço está offline"
 	fi
 
-
 	echo "$DATE - $TIME - $SERVICE - Status: $STATUS = $MESSAGE" >> <caminho_do_diretorio>/$STATUS.txt
   ```
 - Salve o arquivo e saia.
