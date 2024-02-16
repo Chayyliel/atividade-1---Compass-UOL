@@ -140,7 +140,7 @@
   ```bash
 	#!/bin/bash
 
-	SERVICE=$"httpd"
+	SERVICE="httpd"
 	DATE=$(date +%d-%m-%Y)
 	TIME=$(date +%H:%M:%S)
 
@@ -156,7 +156,7 @@
   ```
 
 - Salve o arquivo e saia.
-- Para tornar o arquivo do script executavewl use o comando:
+- Para tornar o arquivo do script executável use o comando:
 
   `sudo chmod +x <nome_do_arquivo>`
 
