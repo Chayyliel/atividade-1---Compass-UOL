@@ -1,4 +1,4 @@
-<h1 align="center"> Atv 1 - AWS/LINUX </h1> 
+<h1 align="center"> Atividade 1 - AWS/LINUX </h1> 
 
 # Índice 
 
